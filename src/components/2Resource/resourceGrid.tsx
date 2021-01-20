@@ -5,6 +5,7 @@ import Outline from 'components/2Resource/pages/outline'
 import Plan from 'components/2Resource/pages/plan'
 import Lesson from 'components/2Resource/pages/lesson'
 import Media from 'components/2Resource/pages/media'
+import Book from 'components/2Resource/pages/book'
 import './grid.less'
 
 const { SubMenu } = Menu;
@@ -28,7 +29,8 @@ class ResourceGrid extends React.Component{
       case 'b':return <Plan></Plan>
       case 'c':return <Lesson></Lesson>
       case 'd':return <Media></Media>
-      case 'f':case 'g':case 'h':return null
+      case 'f':case 'g':return <Book></Book>
+      case 'h':return null
       case 'i':return null
       default:return null
     }

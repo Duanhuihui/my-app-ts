@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import { List, Avatar} from 'antd';
+import { List} from 'antd';
 import {learnItems} from 'data/db'
 
 export default class Learn extends Component{

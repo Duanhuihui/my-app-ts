@@ -32,9 +32,9 @@ export default class Media extends React.Component {
   render(){
       return<>
          <Breadcrumb separator=" | ">
-            <Breadcrumb.Item><HeartOutlined></HeartOutlined><a href="#">视频</a> </Breadcrumb.Item>
-            <Breadcrumb.Item> <a href="#">音频</a> </Breadcrumb.Item>
-            <Breadcrumb.Item> <a href="">PDF</a> </Breadcrumb.Item>
+            <Breadcrumb.Item><HeartOutlined></HeartOutlined><a href="www.baidu.com">视频</a> </Breadcrumb.Item>
+            <Breadcrumb.Item> <a href="www.baidu.com">音频</a> </Breadcrumb.Item>
+            <Breadcrumb.Item> <a href="www.baidu.com">PDF</a> </Breadcrumb.Item>
             <Breadcrumb.Item>An Application</Breadcrumb.Item>
         </Breadcrumb>
         <List
