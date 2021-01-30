@@ -2,32 +2,18 @@
 import CourseGrid from 'components/1Course/courseGrid'
 import ResourceGrid from 'components/2Resource/resourceGrid'
 import PracticeGrid from 'components/3Practice/practiceGrid'
-import ElearningGrid from 'components/4ELearning/elearningGrid'
+import ElearningGrid from 'components/4Elearn/elearningGrid'
 import ExercisesGrid from 'components/5Exercises/exercisesGrid'
 import CommunicationGrid from 'components/6Communication/communicationGrid'
 import EvaluationGrid from 'components/7Evaluation/evaluationGrid'
-import Information from 'components/1Course/pages/information'
+
 
     
 const routes = [
     
     {
-        path:"/",
-        component:CourseGrid,
-        exact:true,
-        children:[
-            {
-                path:'/',
-                component:Information,
-                exact:true
-            },
-            {
-                path:'/1/b',
-                component:EvaluationGrid,
-                exact:true
-
-            }
-        ]
+        path:"/1",
+        component:CourseGrid
     },
     {
         path:"/2",
@@ -35,19 +21,19 @@ const routes = [
     },
     {
         path:"/3",
-        component:ElearningGrid
+        component:PracticeGrid
     },
     {
         path:"/4",
-        component:ExercisesGrid
+        component:ElearningGrid
     },
     {
         path:"/5",
-        component:CommunicationGrid
+        component:ExercisesGrid
     },
     {
         path:"/6",
-        component:PracticeGrid
+        component:CommunicationGrid
     },
     {
         path:"/7",
