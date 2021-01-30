@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import {Button } from 'antd'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from "react-router-dom";
+
 
 class LineDetail extends Component {
-    componentDidMount(){
-        console.log(this.props)
-    }
     goBack=()=>{
         // this.props.history.go(-1)
-        console.log('后退');
+        // const{history} = this.props
+        console.log(this.props.history);
         
     }
     render() {
