@@ -4,11 +4,7 @@ import MainGrid from 'components/Main/mainGrid'
 
 const   App=() =>{
 
-  return (
-    <div>
-<MainGrid></MainGrid>
-    </div>
-  );
+  return (<MainGrid/>);
 }
 
 export default App;

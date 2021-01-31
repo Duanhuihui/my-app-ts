@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { List, Typography, Divider } from 'antd';
+import { List } from 'antd';
 import {Link} from 'react-router-dom'
 
 export default class Line  extends Component {
