@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Button,Row,Col,Divider } from 'antd'
 import './pages.less'
 import {ArrowLeftOutlined,DownloadOutlined,HeartOutlined} from '@ant-design/icons';
 
 
-export default  class LineDetail extends Component {
+export default  class LineDetail extends React.Component<any,any> {
+
     goBack=()=>{
-        // this.props.history.go(-1)
-        // const{history} = this.props
+        // const history = useHistory();
+        this.props.history.go(-1)
+        // history.replace('/practi')
         console.log(this.props);
         
     }

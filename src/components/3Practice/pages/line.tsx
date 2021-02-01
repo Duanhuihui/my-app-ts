@@ -20,7 +20,7 @@ export default class Line  extends Component {
                     console.log(page);
                   },pageSize: 10}}
                 dataSource={this.data}
-                renderItem={item => <List.Item><Link to='/3/d'>{item}</Link></List.Item>}
+                renderItem={item => <List.Item><Link to='/practi/linedetail'>{item}</Link></List.Item>}
                 />
             </div>
         )

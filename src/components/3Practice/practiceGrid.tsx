@@ -16,7 +16,6 @@ class PracticeGrid extends React.Component{
     }
   }
     render(){
-      //const  { banner } = this.state
         return <>
         <Layout>
     <Content style={{ padding: '0 50px' }}>
@@ -28,7 +27,7 @@ class PracticeGrid extends React.Component{
             defaultOpenKeys={['sub2']}
             style={{ height: '100%' }}
           >
-            <Menu.Item key="sub1" icon={<UserOutlined />} title="实验大纲"><Link to='/3/a'>实验大纲</Link></Menu.Item>
+            <Menu.Item key="sub1" icon={<UserOutlined />} title="实验大纲"><Link to='/practi/line'>实验大纲</Link></Menu.Item>
             <Menu.Item key="sub2" icon={<LaptopOutlined />} title="实验指导书">实验指导书</Menu.Item>
             <Menu.Item key="sub3" icon={<NotificationOutlined />} title="实验报告模板">实验报告模板</Menu.Item>
             <Menu.Item key="sub4" icon={<NotificationOutlined />} title="实验提交系统">实验提交系统</Menu.Item>
@@ -36,8 +35,8 @@ class PracticeGrid extends React.Component{
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
           <Switch>
-            <Route  path='/3/a' component={Line}></Route>
-            <Route exact={true} path='/3/d' component={LineDetail}></Route>
+            <Route  path='/practi/line' component={Line}></Route>
+            <Route exact={true} path='/practi/linedetail' component={LineDetail}></Route>
           </Switch>
         </Content>
       </Layout>
