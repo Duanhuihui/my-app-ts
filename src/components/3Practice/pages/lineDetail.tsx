@@ -4,12 +4,11 @@ import './pages.less'
 import {ArrowLeftOutlined,DownloadOutlined,HeartOutlined} from '@ant-design/icons';
 
 
+
 export default  class LineDetail extends React.Component<any,any> {
 
     goBack=()=>{
-        // const history = useHistory();
         this.props.history.go(-1)
-        // history.replace('/practi')
         console.log(this.props);
         
     }
@@ -27,10 +26,13 @@ export default  class LineDetail extends React.Component<any,any> {
                 </Row>
                 <Divider plain>Racing car sprays burning fuel into crowd.</Divider>
                 <Row>
-                细节部分
+                <iframe 
+                title="This is a unique title" 
+                src="http://localhost:3000/file/estore.docx"
+            // src="C:\\Users\\Lenovo\\Desktop\\react-demo\\my-app-ts\\src\\file\\estore.docx"
+                style={{ width: "100%",border: 0,height: 1200}}
+                />
                 </Row>
-                
-                
             </div>
         )
     }

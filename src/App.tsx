@@ -67,7 +67,7 @@ class App extends React.Component<any,any>{
                       <Route path="/evalut" component={EvaluationGrid}/>
                       <Redirect from='/' to='/course' />
                     </Switch>
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center' }}>安徽省 淮南市 泰丰大街168号</Footer>
               </Layout>
 }
 }

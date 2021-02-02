@@ -1,6 +1,7 @@
 import { Component } from 'react'
-import { List } from 'antd';
+import { List,Tag ,Button } from 'antd';
 import {Link} from 'react-router-dom'
+import {DownloadOutlined,HeartOutlined} from '@ant-design/icons';
 
 export default class Line  extends Component {
      data=[
@@ -20,7 +21,11 @@ export default class Line  extends Component {
                     console.log(page);
                   },pageSize: 10}}
                 dataSource={this.data}
-                renderItem={item => <List.Item><Link to='/practi/linedetail'>{item}</Link></List.Item>}
+                renderItem={item => 
+                <List.Item actions={[<Button key="list-loadmore-edit" size={"small"} icon={<HeartOutlined/>}>收藏</Button>, <Button key="list-loadmore-more" size={"small"} icon={<DownloadOutlined/>}>下载</Button>]}>
+                    <Link to='/practi/linede'><Tag color="#f50">PDF</Tag>{item}</Link>
+                    
+                </List.Item>}
                 />
             </div>
         )

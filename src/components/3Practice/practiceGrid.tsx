@@ -4,11 +4,12 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
 import {Link,Switch,Route} from 'react-router-dom'
 import Line from 'components/3Practice/pages/line'
 import LineDetail from 'components/3Practice/pages/lineDetail'
+import Summit from 'components/3Practice/pages/summit'
 import './grid.less'
 
 const { Content, Sider } = Layout;
 
-class PracticeGrid extends React.Component{
+class PracticeGrid extends React.Component<any,any>{
   constructor(props:any){
     super(props)
     this.state={
@@ -16,6 +17,7 @@ class PracticeGrid extends React.Component{
     }
   }
     render(){
+      const {history} = this.props
         return <>
         <Layout>
     <Content style={{ padding: '0 50px' }}>
@@ -23,20 +25,22 @@ class PracticeGrid extends React.Component{
         <Sider className="site-layout-background" width={200}>
           <Menu
             mode="inline"
-            defaultSelectedKeys={['sub2']}
-            defaultOpenKeys={['sub2']}
+            defaultSelectedKeys={["practi/outlin"]}
+            //selectedKeys={[history.location.pathname.substring(1,14)]}
             style={{ height: '100%' }}
+            onClick={()=>{console.log(history.location.pathname.substring(1,14))}}
           >
-            <Menu.Item key="sub1" icon={<UserOutlined />} title="实验大纲"><Link to='/practi/line'>实验大纲</Link></Menu.Item>
-            <Menu.Item key="sub2" icon={<LaptopOutlined />} title="实验指导书">实验指导书</Menu.Item>
-            <Menu.Item key="sub3" icon={<NotificationOutlined />} title="实验报告模板">实验报告模板</Menu.Item>
-            <Menu.Item key="sub4" icon={<NotificationOutlined />} title="实验提交系统">实验提交系统</Menu.Item>
+            <Menu.Item key="practi/outlin" icon={<UserOutlined />} title="实验大纲"><Link to='/practi/outlin'>实验大纲</Link></Menu.Item>
+            <Menu.Item key="practi/linede" icon={<LaptopOutlined />} title="实验指导书"><Link to='/practi/outlin'>实验指导书</Link></Menu.Item>
+            <Menu.Item key="sub3" icon={<NotificationOutlined />} title="实验报告模板"><Link to='/practi/outlin'>实验报告模板</Link></Menu.Item>
+            <Menu.Item key="sub4" icon={<NotificationOutlined />} title="实验提交系统"><Link to='/practi/summit'>实验提交系统</Link></Menu.Item>
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
           <Switch>
-            <Route  path='/practi/line' component={Line}></Route>
-            <Route exact={true} path='/practi/linedetail' component={LineDetail}></Route>
+            <Route path='/practi/outlin' component={Line}></Route>
+            <Route path='/practi/linede' component={LineDetail}></Route>
+            <Route path='/practi/summit' component={Summit}></Route>
           </Switch>
         </Content>
       </Layout>
