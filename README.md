@@ -30,8 +30,3 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 
-
-## 现存问题
-
-2021年1月30日14:47:03
-    3practice页面回退会产生history属性找不到的错误导致无法实现this.props.history.go(-1)的功能
