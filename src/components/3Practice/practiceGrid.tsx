@@ -26,14 +26,14 @@ class PracticeGrid extends React.Component<any,any>{
           <Menu
             mode="inline"
             defaultSelectedKeys={["practi/outlin"]}
-            //selectedKeys={[history.location.pathname.substring(1,14)]}
+            selectedKeys={[history.location.pathname.substring(1,14)]}
             style={{ height: '100%' }}
             onClick={()=>{console.log(history.location.pathname.substring(1,14))}}
           >
             <Menu.Item key="practi/outlin" icon={<UserOutlined />} title="实验大纲"><Link to='/practi/outlin'>实验大纲</Link></Menu.Item>
-            <Menu.Item key="practi/linede" icon={<LaptopOutlined />} title="实验指导书"><Link to='/practi/outlin'>实验指导书</Link></Menu.Item>
-            <Menu.Item key="sub3" icon={<NotificationOutlined />} title="实验报告模板"><Link to='/practi/outlin'>实验报告模板</Link></Menu.Item>
-            <Menu.Item key="sub4" icon={<NotificationOutlined />} title="实验提交系统"><Link to='/practi/summit'>实验提交系统</Link></Menu.Item>
+            <Menu.Item key="practi/outlin" icon={<LaptopOutlined />} title="实验指导书"><Link to='/practi/outlin'>实验指导书</Link></Menu.Item>
+            <Menu.Item key="practi/outlin" icon={<NotificationOutlined />} title="实验报告模板"><Link to='/practi/outlin'>实验报告模板</Link></Menu.Item>
+            <Menu.Item key="practi/summit" icon={<NotificationOutlined />} title="实验提交系统"><Link to='/practi/summit'>实验提交系统</Link></Menu.Item>
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
