@@ -1,9 +1,10 @@
 import React from 'react'
 import { Layout, Menu} from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import {Link,Route,Switch} from 'react-router-dom'
+import ExerciseList from 'components/5Exercises/pages/exerciseList'
 import './grid.less'
 
-const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
 class ExercisesGrid extends React.Component{
@@ -26,7 +27,7 @@ class ExercisesGrid extends React.Component{
             defaultOpenKeys={['sub1']}
             style={{ height: '100%' }}
           >
-            <Menu.Item key="sub1" icon={<UserOutlined />} title="课后习题">课后习题 
+            <Menu.Item key="sub1" icon={<UserOutlined />} title="课后习题"><Link to='/exerci/exelst'>课后习题</Link> 
             </Menu.Item>
             <Menu.Item key="sub2" icon={<LaptopOutlined />} title="复习试卷及参考答案">复习试卷及参考答案
             </Menu.Item>
@@ -34,7 +35,11 @@ class ExercisesGrid extends React.Component{
             </Menu.Item>
           </Menu>
         </Sider>
-        <Content style={{ padding: '0 24px', minHeight: 280 }}>222222222222222222222222222</Content>
+        <Content style={{ padding: '0 24px', minHeight: 280 }}>
+          <Switch>
+            <Route path='/exerci/exelst' component={ExerciseList}></Route>
+          </Switch>
+        </Content>
       </Layout>
     </Content>
   </Layout>

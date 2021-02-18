@@ -4,6 +4,8 @@ import { UserOutlined, LaptopOutlined} from '@ant-design/icons';
 import './grid.less'
 import {Link,Route,Switch} from 'react-router-dom'
 import Online from 'components/4Elearn/pages/online'
+import OnlineList from 'components/4Elearn/pages/onlineList'
+import Videos from 'components/4Elearn/pages/videos'
 const { Content, Sider } = Layout;
 
 
@@ -27,13 +29,15 @@ class ElearningGrid extends React.Component{
             defaultOpenKeys={['sub1']}
             style={{ height: '100%' }}
           >
-            <Menu.Item key="sub1" icon={<UserOutlined />} title="在线教学"><Link to='/elearn/online'>在线教学</Link></Menu.Item>
+            <Menu.Item key="sub1" icon={<UserOutlined />} title="在线教学"><Link to='/elearn/onlnli'>在线教学</Link></Menu.Item>
             <Menu.Item key="sub2" icon={<LaptopOutlined />} title="教学录像"><Link to='/elearn/videos'>教学录像</Link></Menu.Item>
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
         <Switch>
           <Route path='/elearn/online' component={Online}></Route>
+          <Route path='/elearn/onlnli' component={OnlineList}></Route>
+          <Route path='/elearn/videos' component={Videos}></Route>
         </Switch>
         </Content>
       </Layout>

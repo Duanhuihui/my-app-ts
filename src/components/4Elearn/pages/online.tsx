@@ -1,13 +1,27 @@
 import { Component } from 'react'
-import { Row,Col,Divider,Comment,Avatar,Tooltip} from 'antd';
+import { Row,Col,Divider,Comment,Avatar,Tooltip,Button} from 'antd';
 import ReactPlayer from 'react-player'
 import moment from 'moment';
+import {ArrowLeftOutlined,DownloadOutlined,HeartOutlined} from '@ant-design/icons';
 
-export default class Online  extends Component {
-    
+export default class Online  extends Component<any,any> {
+    goBack=()=>{
+        this.props.history.go(-1)
+        console.log(this.props);
+        
+    }
     render() {
         return <div>
-            <Divider  orientation="left">直播列表</Divider>
+                <Row gutter={1}>
+                    <Col span={1} ><Button type="primary" onClick={this.goBack}><ArrowLeftOutlined twoToneColor="#eb2f96"/></Button></Col>
+                    <Col span={1} offset={21} >
+                        <Button  type="primary" onClick={this.goBack} icon={<HeartOutlined /> }></Button>
+                    </Col>
+                    <Col span={1}>
+                        <Button  type="primary" onClick={this.goBack} icon={<DownloadOutlined /> }></Button>
+                    </Col>
+                </Row>
+            <Divider  orientation="left">直播间</Divider>
                 <ReactPlayer
                     className='react-player'
                     url='....flv'
