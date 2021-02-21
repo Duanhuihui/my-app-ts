@@ -1,11 +1,13 @@
 import React from 'react'
-import {Row,Col,Radio,Checkbox,Tag} from 'antd'
-
+import {Row,Col,Radio,Checkbox,Tag,Image,Input  } from 'antd'
+import './pages.less'
+const { TextArea } = Input;
 export default class ExerciseList extends React.Component{
    
     render(){
         const radioStyle = { display: 'block', height: '30px', lineHeight: '30px', };
-        const judge = { display: 'block', height: '30px', lineHeight: '30px', };
+        const judgeStyle = {  height: '30px', lineHeight: '30px', };
+        const InputTemp = <><input className="inputTemp"></input></>
         return <>
             <Row gutter={5} style={{paddingTop:'10px' }}>
                 <Col span={24}><Tag color="#f50">单选</Tag>1.这是题目描述，请根据题目描述选择正确的答案。</Col>
@@ -58,12 +60,13 @@ export default class ExerciseList extends React.Component{
                 </Col>
             </Row>
             </div>
+
             <Row gutter={5} style={{paddingTop:'10px' }}>
                 <Col span={24}><Tag color="#f50">判断</Tag>3.这是题目描述，请根据题目描述选择正确的答案。</Col>
             </Row>
             <div style={{paddingLeft:'20px'}}>
-            <Row  style={{paddingTop:'10px' }}>
-                <Col span={1}>
+            <Row  gutter={5}style={{paddingTop:'10px' }} >
+                <Col span={2}>
                 <Radio.Group >
                 <Radio value={1}>
                 </Radio>
@@ -71,8 +74,60 @@ export default class ExerciseList extends React.Component{
                 </Radio>
                 </Radio.Group>
                 </Col>
-                <Col span={23}>
+                <Col span={22}> 判断题选项,判断题选项判断题选项判断题选项判断题选项判断题选项,判断题选项判断题选项判断题选项 </Col>
+            </Row>
+            <Row  style={{paddingTop:'10px' }}>
+                <Col span={2}>
+                <Radio.Group >
+                <Radio value={1} />
+                <Radio  value={2} />
+                </Radio.Group>
+                </Col>
+                <Col span={22}>
                 判断题选项,判断题选项判断题选项判断题选项判断题选项判断题选项,判断题选项判断题选项判断题选项
+                </Col>
+            </Row>
+            </div>
+            <Row gutter={5} style={{paddingTop:'10px' }}>
+                <Col span={24}><Tag color="#f50">填空</Tag>4.这是题目描述，请根据题目描述填写正确的答案。</Col>
+            </Row>
+            <div style={{paddingLeft:'20px'}}>
+            <Row gutter={5} style={{paddingTop:'10px' }}>
+                <Col span={24}>1. 填写这两个空格{InputTemp}和{InputTemp}</Col>
+            </Row>
+            </div>
+            <div style={{paddingLeft:'20px'}}>
+            <Row gutter={5} style={{paddingTop:'10px' }}>
+                <Col span={24}>2. 填写这个空格测试测试测试{InputTemp}</Col>
+            </Row>
+            </div>
+            <Row gutter={5} style={{paddingTop:'10px' }}>
+                <Col span={24}><Tag color="#f50">计算</Tag>5.这是题目描述，请根据题目描述填写正确的答案。</Col>
+            </Row>
+            <div style={{paddingLeft:'20px'}}>
+            <Row gutter={5} style={{paddingTop:'10px' }}>
+                <Col span={24}>1. 题目要求题目要求题目要求题目要求题目要求题目要求</Col>
+            </Row>
+            <Row gutter={5}>
+                <Col span={8}>
+                <Image
+                    width={'100%'}
+                    height={200}
+                    src="error"
+                    />
+                </Col>
+                <Col span={16}>
+                <TextArea placeholder="请在此键入你的答案" autoSize={true}/>
+                </Col>
+            </Row>
+            </div>
+            <div style={{paddingLeft:'20px'}}>
+            <Row gutter={5} style={{paddingTop:'10px' }}>
+                <Col span={24}>2. 题目要求题目要求题目要求题目要求题目要求题目要求</Col>
+            </Row>
+            <Row gutter={5}>
+                <Col span={24}>
+                <TextArea placeholder="请在此键入你的答案" autoSize={true}/>
                 </Col>
             </Row>
             </div>
