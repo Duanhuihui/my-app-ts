@@ -1,14 +1,73 @@
 import React from 'react'
-import {Row,Col,Radio,Checkbox,Tag,Image,Input  } from 'antd'
+import {Row,Col,Radio,Checkbox,Tag,Image,Input,Divider,Button,Form  } from 'antd'
 import './pages.less'
 const { TextArea } = Input;
 export default class ExerciseList extends React.Component{
+    state ={
+        timer_minute:30,
+        start_exerce:false
+    }
+    timer=()=>{
+        this.setState({
+            start_exerce:true
+        })
+        let leftTime=this.state.timer_minute
+
+        let timer = setInterval(()=>{
+            this.setState({timer_minute:leftTime-1})
+            if( leftTime-1>0){
+                leftTime=leftTime-1
+            }else{
+                clearInterval(timer);
+            }
+        },1000)
+    }
    
     render(){
         const radioStyle = { display: 'block', height: '30px', lineHeight: '30px', };
-        const judgeStyle = {  height: '30px', lineHeight: '30px', };
         const InputTemp = <><input className="inputTemp"></input></>
         return <>
+                <Row gutter={5}>
+                    <Col span={15}>
+                <Form
+                name="basic"
+                initialValues={{ remember: true }}
+                layout="inline"
+                >
+                    
+                    <Form.Item
+                    label="年级"
+                    name="class"
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                    label="姓名"
+                    name="username"
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                    label="学号"
+                    name="number"
+                    >
+                        <Input />
+                    </Form.Item>
+
+
+                    
+                </Form>
+                </Col>
+                <Col span={4}><Button type={'primary'}>提交</Button></Col>
+                <Col span={2}><Button type={'primary'} onClick={this.timer} disabled={this.state.start_exerce}>开始考试</Button></Col>
+                    {this.state.timer_minute}
+                </Row>
+                
+            
+            
+            <Divider  orientation="left">习题</Divider>
             <Row gutter={5} style={{paddingTop:'10px' }}>
                 <Col span={24}><Tag color="#f50">单选</Tag>1.这是题目描述，请根据题目描述选择正确的答案。</Col>
             </Row>
