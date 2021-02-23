@@ -9,15 +9,23 @@ import Videos from 'components/4Elearn/pages/videos'
 const { Content, Sider } = Layout;
 
 
-class ElearningGrid extends React.Component{
+class ElearningGrid extends React.Component<any,any>{
   constructor(props:any){
     super(props)
     this.state={
       banner:[]
     }
   }
+  choseMenu=(menu:string)=>{
+    if(menu.length > 6){
+      return [menu]
+    }else{
+      return [menu+'/onlnli']
+    }
+  }
     render(){
-      //const  { banner } = this.state
+      const {history} = this.props
+      let choseMenu = this.choseMenu(history.location.pathname.substring(1,14))
         return <>
         <Layout>
     <Content style={{ padding: '0 50px' }}>
@@ -25,12 +33,11 @@ class ElearningGrid extends React.Component{
         <Sider className="site-layout-background" width={200}>
           <Menu
             mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            selectedKeys={choseMenu}
             style={{ height: '100%' }}
           >
-            <Menu.Item key="sub1" icon={<UserOutlined />} title="在线教学"><Link to='/elearn/onlnli'>在线教学</Link></Menu.Item>
-            <Menu.Item key="sub2" icon={<LaptopOutlined />} title="教学录像"><Link to='/elearn/videos'>教学录像</Link></Menu.Item>
+            <Menu.Item key="elearn/onlnli" icon={<UserOutlined />} title="在线教学"><Link to='/elearn/onlnli'>在线教学</Link></Menu.Item>
+            <Menu.Item key="elearn/videos" icon={<LaptopOutlined />} title="教学录像"><Link to='/elearn/videos'>教学录像</Link></Menu.Item>
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>

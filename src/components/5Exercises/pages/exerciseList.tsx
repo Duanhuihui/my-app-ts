@@ -7,6 +7,9 @@ export default class ExerciseList extends React.Component{
         timer_minute:30,
         start_exerce:false
     }
+    componentWillUnmount(){
+        //处理逻辑
+        }
     timer=()=>{
         this.setState({
             start_exerce:true
@@ -55,9 +58,6 @@ export default class ExerciseList extends React.Component{
                     >
                         <Input />
                     </Form.Item>
-
-
-                    
                 </Form>
                 </Col>
                 <Col span={4}><Button type={'primary'}>提交</Button></Col>
@@ -103,7 +103,7 @@ export default class ExerciseList extends React.Component{
                         <Checkbox value="A">A11111111111111111111111111111111111111111</Checkbox>
                     </Col>
                     <Col span={8}>
-                        <Checkbox value="B">B2222222222222222222222222222222222222222222222</Checkbox>
+                        <Checkbox value="B"/>B222222222222222222222222222222222222222222
                     </Col>
                     <Col span={8}>
                         <Checkbox value="C">C33333333333333333333333333333333333333333</Checkbox>
@@ -124,24 +124,21 @@ export default class ExerciseList extends React.Component{
                 <Col span={24}><Tag color="#f50">判断</Tag>3.这是题目描述，请根据题目描述选择正确的答案。</Col>
             </Row>
             <div style={{paddingLeft:'20px'}}>
-            <Row  gutter={5}style={{paddingTop:'10px' }} >
-                <Col span={2}>
+            <Row style={{paddingTop:'10px' }} >
+                
                 <Radio.Group >
                 <Radio value={1}>
                 </Radio>
-                <Radio  value={2} style={{color:'red'}}>
+                <Radio  value={2}>
                 </Radio>
                 </Radio.Group>
-                </Col>
-                <Col span={22}> 判断题选项,判断题选项判断题选项判断题选项判断题选项判断题选项,判断题选项判断题选项判断题选项 </Col>
+                <Col span={22}>判断题选项,判断题选项判断题选项判断题选项判断题选项判断题选项,判断题选项判断题选项判断题选项 </Col>
             </Row>
             <Row  style={{paddingTop:'10px' }}>
-                <Col span={2}>
                 <Radio.Group >
                 <Radio value={1} />
                 <Radio  value={2} />
                 </Radio.Group>
-                </Col>
                 <Col span={22}>
                 判断题选项,判断题选项判断题选项判断题选项判断题选项判断题选项,判断题选项判断题选项判断题选项
                 </Col>

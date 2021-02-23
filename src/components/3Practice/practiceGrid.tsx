@@ -16,8 +16,16 @@ class PracticeGrid extends React.Component<any,any>{
       banner:[]
     }
   }
+  choseMenu=(menu:string)=>{
+    if(menu.length > 6){
+      return [menu]
+    }else{
+      return [menu+'/outlin']
+    }
+  }
     render(){
       const {history} = this.props
+      let choseMenu = this.choseMenu(history.location.pathname.substring(1,14))
         return <>
         <Layout>
     <Content style={{ padding: '0 50px' }}>
@@ -25,14 +33,15 @@ class PracticeGrid extends React.Component<any,any>{
         <Sider className="site-layout-background" width={200}>
           <Menu
             mode="inline"
+            selectedKeys={choseMenu}
             defaultSelectedKeys={["practi/outlin"]}
-            selectedKeys={[history.location.pathname.substring(1,14)]}
+            // selectedKeys={["practi/outlin"]}
             style={{ height: '100%' }}
             onClick={()=>{console.log(history.location.pathname.substring(1,14))}}
           >
             <Menu.Item key="practi/outlin" icon={<UserOutlined />} title="实验大纲"><Link to='/practi/outlin'>实验大纲</Link></Menu.Item>
-            <Menu.Item key="practi/outlin" icon={<LaptopOutlined />} title="实验指导书"><Link to='/practi/outlin'>实验指导书</Link></Menu.Item>
-            <Menu.Item key="practi/outlin" icon={<NotificationOutlined />} title="实验报告模板"><Link to='/practi/outlin'>实验报告模板</Link></Menu.Item>
+            <Menu.Item key="practi/outlin1" icon={<LaptopOutlined />} title="实验指导书"><Link to='/practi/outlin'>实验指导书</Link></Menu.Item>
+            <Menu.Item key="practi/outlin2" icon={<NotificationOutlined />} title="实验报告模板"><Link to='/practi/outlin'>实验报告模板</Link></Menu.Item>
             <Menu.Item key="practi/summit" icon={<NotificationOutlined />} title="实验提交系统"><Link to='/practi/summit'>实验提交系统</Link></Menu.Item>
           </Menu>
         </Sider>
