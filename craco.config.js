@@ -14,7 +14,4 @@ module.exports = {
       },
     },
   ],
-  externales:{
-    'BMap':'BMap'
-  }
 };
