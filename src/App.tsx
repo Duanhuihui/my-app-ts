@@ -17,6 +17,7 @@ import CommunicationGrid from 'components/6Communication/communicationGrid'
 import EvaluationGrid from 'components/7Evaluation/evaluationGrid'
 
 const { Header,  Footer } = Layout;
+const { SubMenu } = Menu;
 class App extends React.Component<any,any>{
 
   constructor(props:any){
@@ -55,6 +56,12 @@ class App extends React.Component<any,any>{
                     <Menu.Item key="exerci"><NavLink to="/exerci">作业考试</NavLink></Menu.Item>
                     <Menu.Item key="commun"><NavLink to="/commun">交流互动</NavLink></Menu.Item>
                     <Menu.Item key="evalut"><NavLink to="/evalut">效果评价</NavLink></Menu.Item>
+                    <SubMenu key="sub1" title="subnav 1">
+                      <Menu.Item key="1">option1</Menu.Item>
+                      <Menu.Item key="2">option2</Menu.Item>
+                      <Menu.Item key="3">option3</Menu.Item>
+                      <Menu.Item key="4">option4</Menu.Item>
+                    </SubMenu>
                   </Menu>
                 </Header>
                     <Switch>

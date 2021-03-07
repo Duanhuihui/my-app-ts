@@ -4,6 +4,7 @@ import {Route,Switch,Link} from 'react-router-dom'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import './grid.less'
 import SignIn from 'components/6Communication/pages/signIn'
+import Workshops from 'components//6Communication/pages/workshops'
 
 const { Content, Sider } = Layout;
 
@@ -27,14 +28,15 @@ class CommunicationGrid extends React.Component{
             defaultOpenKeys={['sub1']}
             style={{ height: '100%' }}
           >
-            <Menu.Item key="1" icon={<UserOutlined />}><Link to='/commun/signin'></Link>课堂签到系统</Menu.Item>
-            <Menu.Item key="sub2" icon={<LaptopOutlined />} title="在线交流研讨">在线交流研讨</Menu.Item>
+            <Menu.Item key="1" icon={<UserOutlined />}><Link to='/commun/signin'>课堂签到系统</Link></Menu.Item>
+            <Menu.Item key="sub2" icon={<LaptopOutlined />} title="在线交流研讨"><Link to='/commun/workshops'>在线交流研讨</Link></Menu.Item>
             <Menu.Item key="sub3" icon={<NotificationOutlined />} title="答疑交流研讨">答疑交流研讨</Menu.Item>
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
           <Switch>
             <Route path='/commun/signin' component={SignIn}></Route>
+            <Route path='/commun/workshops' component={Workshops}></Route>
           </Switch>
         </Content>
       </Layout>
