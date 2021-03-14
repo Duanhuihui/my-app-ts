@@ -1,7 +1,6 @@
 import React from 'react'
-import { Calendar,Row,Col,Divider,List,Button,Skeleton  } from 'antd';
+import { Calendar,Row,Col,Divider,List,Button  } from 'antd';
 import {Map, Marker} from 'react-bmapgl';
-import moment from 'moment';
 import './pages.less'
 
 const data = [
