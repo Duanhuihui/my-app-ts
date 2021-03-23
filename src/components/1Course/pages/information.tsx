@@ -1,27 +1,16 @@
 import { Row,Divider,Typography } from 'antd';
 import React,{ Component } from 'react'
-import {Iinformation} from 'type/Information'
-
-
-
-
-interface informationProps{
-  informations:Iinformation[]
-}
-
-
-
+import {informations,noticeData,columns} from 'data/db'
 
 const { Title, Paragraph, Link } = Typography;
 
 
-export default class Information extends Component<informationProps,any>{
+export default class Information extends Component<any,any>{
   state={
 
   }
   
      loadInformations=()=>{ 
-      const{informations}=this.props;
       return informations.map((element)=>{
               return <div key={element.key}><Divider orientation="left">{element.title}</Divider>
               <Row>

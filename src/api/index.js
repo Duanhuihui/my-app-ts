@@ -8,6 +8,6 @@ const api={
     },
     getTest(){
         return gethtttp(baseUrl.test)
-    }
+    },
 }
  export default api;
