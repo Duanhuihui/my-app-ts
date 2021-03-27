@@ -8,16 +8,18 @@ import Contact from 'components/1Course/pages/contact '
 import Learn from 'components/1Course/pages/learn'
 import './grid.less'
 import api from 'api';
+import {test} from 'apis'
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
+interface courseGridState{
+  dd:{q:String}
+}
 
 
 
-class courseGrid extends React.Component<any,any>{
-  state={
-    dd:{q:String}
-  }
+class courseGrid extends React.Component<courseGridState,any>{
+
   componentDidMount(){
     api.getTest()
     .then(resp =>{
@@ -27,6 +29,9 @@ class courseGrid extends React.Component<any,any>{
       this.setState({
         dd:data
       })
+    });
+    test().then(result=>{
+      console.log(result)
     })
   }
     render(){
