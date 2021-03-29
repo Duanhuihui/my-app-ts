@@ -1,9 +1,12 @@
-import { Row,Divider,Typography,List ,Avatar} from 'antd';
+import { Row,Divider,Typography,List ,Space} from 'antd';
 import React,{ Component } from 'react'
 import {informations,noticeData,columns} from 'data/db'
-import {getInfo} from 'apis/index'
+import {getInfo,getInfoById} from 'apis/index'
 
-const { Title, Paragraph, Link } = Typography;
+//admin
+import CourseForm  from 'components/admin/courseForm'
+
+const { Title, Paragraph, Link,Text } = Typography;
 interface InformationState{
   list:{href:String,title:String,avatar:String,description:String,content:String}[]
 }
@@ -12,6 +15,8 @@ export default class Information extends Component<any,InformationState>{
   state={
     list:[{href:"",title:"String",avatar:"String",description:"String",content:"String"}]
   }
+
+
   componentDidMount(){
     console.log('匹配开始！！')
     getInfo().then((result)=>{
@@ -19,11 +24,16 @@ export default class Information extends Component<any,InformationState>{
         list:result
       })
     })
+    console.log('post')
+    getInfoById("1","Post请求").then(result=>{
+      console.log("result",result)
+    })
   }
   // listData = this.state.list
   loadDate=()=>{
     const {list} = this.state
     return <>
+    <CourseForm/>
    <List
     itemLayout="vertical"
     size="large"
@@ -46,8 +56,7 @@ export default class Information extends Component<any,InformationState>{
         }
       >
         <List.Item.Meta
-          title={<a href={item.href}>{item.title}</a>}
-          description={item.description}
+          title={<a href={item.href}><Space size={25}>{item.title}<Text type="secondary">item.teacher_id</Text></Space></a>}
         />
         {item.content}
       </List.Item>
@@ -72,6 +81,7 @@ export default class Information extends Component<any,InformationState>{
       })
       }
     render(){
+
       const da = this.loadDate()
         return <div>
           {da}
