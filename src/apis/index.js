@@ -28,3 +28,26 @@ export function getInfoById(id,name){
 
     })
 }
+
+//新建课程
+export function submitCourse(value){
+    return ajax({
+        headers:{
+            'Content-Type': 'application/json;charset=UTF-8'
+        },
+        method:'post',
+        url:'/submitCourse',
+        data: JSON.stringify(value)
+    })
+}
+//上传图片
+export function uploadImg(file){
+    return ajax({
+        headers:{
+            'Content-Type': 'false'
+        },
+        method:'post',
+        url:'/uploadImg',
+        data: file
+    })
+}
