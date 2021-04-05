@@ -11,10 +11,10 @@ export function test(){
 
     })
 }
-export function getInfo(){
+export function getAllInfo(){
     return ajax({
         method:'get',
-        url:'/getInfo'
+        url:'/getAllInfo'
     })
 }
 export function getInfoById(id,name){
@@ -47,7 +47,21 @@ export function uploadImg(file){
             'Content-Type': 'false'
         },
         method:'post',
-        url:'/uploadImg',
+        url:'/file/upload',
         data: file
+    })
+}
+//删除文件
+export function deleteFile(fileName){
+    return ajax({
+        method:'get',
+        url:'/file/delete/'+fileName,
+    })
+}
+export function deleteFiles(fileNames){
+    return ajax({
+        method:'post',
+        url:'/file/delete/',
+        data:fileNames
     })
 }

@@ -1,39 +1,40 @@
-import { Row,Divider,Typography,List ,Space} from 'antd';
-import React,{ Component } from 'react'
-import {informations,noticeData,columns} from 'data/db'
-import {getInfo,getInfoById} from 'apis/index'
+import { Row,Divider,Typography,List ,Space,Tag,Col,Image, Result} from 'antd';
+import { Component } from 'react'
+import {informations} from 'data/db'
+import {getAllInfo} from 'apis/index'
+import {fileUrl} from 'config'
 
 //admin
 import CourseForm  from 'components/admin/courseForm'
 
 const { Title, Paragraph, Link,Text } = Typography;
 interface InformationState{
-  list:{href:String,title:String,avatar:String,description:String,content:String}[]
+  list:{href:String,title:String,avatar:String,description:String,content:String,teacher:string}[],
+  deleteSuccess:boolean
 }
 
 export default class Information extends Component<any,InformationState>{
   state={
-    list:[{href:"",title:"String",avatar:"String",description:"String",content:"String"}]
+    list:[{href:"",title:"String",avatar:"String",description:"String",content:"String",teacher:''}],
+    deleteSuccess:false
   }
-
-
-  componentDidMount(){
-    console.log('匹配开始！！')
-    getInfo().then((result)=>{
+  getAllInfo=()=>{
+    getAllInfo().then((result)=>{
       this.setState({
         list:result
       })
     })
-    console.log('post')
-    getInfoById("1","Post请求").then(result=>{
-      console.log("result",result)
-    })
   }
-  // listData = this.state.list
-  loadDate=()=>{
+
+
+  componentDidMount(){
+    this.getAllInfo()
+  }
+  // 加载数据并渲染组件
+  onLoadDate=()=>{
     const {list} = this.state
     return <>
-    <CourseForm/>
+    <CourseForm updateList={this.getAllInfo }/>
    <List
     itemLayout="vertical"
     size="large"
@@ -45,21 +46,22 @@ export default class Information extends Component<any,InformationState>{
     }}
     dataSource={list}
     renderItem={item => (
-      <List.Item
-        key={item.title}
-        extra={
-          <img
-            width={272}
-            alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-          />
-        }
-      >
-        <List.Item.Meta
-          title={<a href={item.href}><Space size={25}>{item.title}<Text type="secondary">item.teacher_id</Text></Space></a>}
-        />
-        {item.content}
+      <Row gutter={[16,16]}>
+        <Col span={3}>
+          <Image
+          alt="测试"
+          height={"100px"}
+          width={"100px"}
+          src={fileUrl+item.avatar}
+           ></Image>
+        </Col>
+        <Col span={21}>
+        <List.Item key={item.title}>
+        <List.Item.Meta title={<a href={item.href}>课程名：<Space size={25}>{item.title}<Text type="secondary">{item.teacher}</Text></Space></a>}/>
+        概要：{item.content}
       </List.Item>
+        </Col>
+      </Row>
     )}
   />
     
@@ -81,11 +83,8 @@ export default class Information extends Component<any,InformationState>{
       })
       }
     render(){
-
-      const da = this.loadDate()
         return <div>
-          {da}
-        {this.loadInformations()}
+          {this.onLoadDate()}
         </div>
     }
 }

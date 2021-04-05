@@ -1,5 +1,5 @@
 import axios from "axios";
-import qs from  'qs'
+// import qs from  'qs'
 // axios.interceptors.request.use(function (config) {
 //     // 在发送请求之前做些什么，例如加入token
 //     //拦截POST请求
