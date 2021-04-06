@@ -40,8 +40,8 @@ export function submitCourse(value){
         data: JSON.stringify(value)
     })
 }
-//上传图片
-export function uploadImg(file){
+//上传
+export function uploadfile(file){
     return ajax({
         headers:{
             'Content-Type': 'false'
@@ -49,6 +49,17 @@ export function uploadImg(file){
         method:'post',
         url:'/file/upload',
         data: file
+    })
+}
+//上传
+export function uploadfiles(files){
+    return ajax({
+        // headers:{
+        //     'Content-Type': 'multipart/form-data'
+        // },
+        method:'post',
+        url:'/file/uploadBatch',
+        data: files
     })
 }
 //删除文件

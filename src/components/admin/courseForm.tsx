@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Form, Row, Input, Col, Button, Upload, Space,message  } from 'antd'
+import { Form, Row, Input, Col, Button, Upload, Space,message,DatePicker  } from 'antd'
 import { FormInstance } from 'antd/lib/form';
-import {submitCourse,deleteFile,deleteFiles} from 'apis/index'
+import {submitCourse,deleteFile,uploadfiles,uploadfile} from 'apis/index'
 import {upload}from 'config'
 import { UploadOutlined } from '@ant-design/icons';
 
@@ -10,7 +10,7 @@ const {TextArea} = Input
 interface CourseFormProp{
     updateList:()=>any
 }
-
+const { RangePicker } = DatePicker;
 export default class CourseForm extends Component<CourseFormProp, any> {
     state={
         fileList:[],
@@ -32,10 +32,17 @@ export default class CourseForm extends Component<CourseFormProp, any> {
 
     onFinish = (value:any)=>{
         console.log("value",value)
+        const {imgList,fileList} = this.state
+        let files:any[] = imgList.concat(fileList,[])
+        this.onUploadfiles(files)
         submitCourse(value).then((result)=>{
             if(result ===1){
                 message.success(`新增${value.title}成功`)
-                this.onReset()
+                // this.onReset()
+                this.setState({
+                    imgList:[],
+                    fileList:[]
+                })
                 this.props.updateList()
             }else{
                 message.warn(`新增${value.title}失败`)
@@ -55,8 +62,8 @@ export default class CourseForm extends Component<CourseFormProp, any> {
     }
     uploadImg={
         name: 'file',
-        multiple: true,
-        action: upload,
+        // multiple: true,
+        // action: upload,
         onChange:(info:any)=>{
             const { status } = info.file;
             let imgList = [...info.fileList]
@@ -83,16 +90,22 @@ export default class CourseForm extends Component<CourseFormProp, any> {
                 })
             }
             return true;
+        },
+        beforeUpload:(file:any):boolean=>{
+            this.setState((state:any)=>({
+                imgList: [...state.imgList, file],
+            }))
+            return false;
         }
     }
     uploadFile={
         name: 'file',
-        multiple: true,
-        action: upload,
+        // multiple: true,
+        // action: upload,
         onChange:(info:any)=>{
             const { status } = info.file;
             let fileList = [...info.fileList]
-            // fileList = fileList.slice(-6)
+            fileList = fileList.slice(-1)
             this.setState({ fileList });
             if (status === 'done') {
               this.formRef.current!.setFieldsValue({ href: info.file.name });
@@ -102,26 +115,22 @@ export default class CourseForm extends Component<CourseFormProp, any> {
             }
           },
           onRemove:(value:any)=>{
-            console.log("remove",value)
-            console.log("this.state.fileList",this.state.fileList)
-            // let fileListTemp = this.state.fileList
-            //     fileListTemp.forEach(element => {
-            //         if(JSON.stringify(element) === JSON.stringify(value)){
-            //             fileListTemp.splice(fileListTemp.indexOf(element))
-            //             this.setState({
-            //                 fileList:fileListTemp
-            //             })
-            //         }
-            //     });
-                deleteFile(value.name)
-                // this.setState({
-                //     fileList:fileListTemp
-                // })
+            deleteFile(value.name)
             return true;
+        },
+        beforeUpload:(file:any):boolean=>{
+            this.setState((state:any)=>({
+                fileList: [...state.fileList, file],
+            }))
+            return false;
         }
     }
-    onPreviewImage = (file:any) =>{
-        
+    //批量上传文件接口
+    onUploadfiles=(files:any[])=>{
+        console.log("files",files)
+        files.forEach((file)=>{
+            uploadfile(file)
+        })
     }
     onReset=()=>{
         const {fileList} = this.state
@@ -185,6 +194,7 @@ export default class CourseForm extends Component<CourseFormProp, any> {
                     </Col>
                 </Row>
             </Form>
+            <RangePicker inputReadOnly></RangePicker>
         </>
     }
 

@@ -9,13 +9,13 @@ import CourseForm  from 'components/admin/courseForm'
 
 const { Title, Paragraph, Link,Text } = Typography;
 interface InformationState{
-  list:{href:String,title:String,avatar:String,description:String,content:String,teacher:string}[],
+  list:{id:number,href:String,title:String,avatar:String,description:String,content:String,teacher:string}[],
   deleteSuccess:boolean
 }
 
 export default class Information extends Component<any,InformationState>{
   state={
-    list:[{href:"",title:"String",avatar:"String",description:"String",content:"String",teacher:''}],
+    list:[{id:0,href:"",title:"String",avatar:"String",description:"String",content:"String",teacher:''}],
     deleteSuccess:false
   }
   getAllInfo=()=>{
@@ -56,8 +56,8 @@ export default class Information extends Component<any,InformationState>{
            ></Image>
         </Col>
         <Col span={21}>
-        <List.Item key={item.title}>
-        <List.Item.Meta title={<a href={item.href}>课程名：<Space size={25}>{item.title}<Text type="secondary">{item.teacher}</Text></Space></a>}/>
+        <List.Item key={item.id}>
+        <List.Item.Meta title={<a href={fileUrl+item.href}>课程名：<Space size={25}>{item.title}<Text type="secondary">{item.teacher}</Text></Space></a>}/>
         概要：{item.content}
       </List.Item>
         </Col>
