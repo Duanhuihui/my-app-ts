@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
-import { Form, Row, Input, Col, Button, Upload, Space,message,DatePicker  } from 'antd'
+import { Form, Row, Input, Col, Button, Upload, Space,message,Divider  } from 'antd'
 import { FormInstance } from 'antd/lib/form';
-import {submitCourse,deleteFile,uploadfiles,uploadfile} from 'apis/index'
-import {upload}from 'config'
+import {Link} from 'react-router-dom'
+import {submitCourse,deleteFile,uploadfile} from 'apis/index'
 import { UploadOutlined } from '@ant-design/icons';
-
+import {ArrowLeftOutlined,DownloadOutlined,HeartOutlined} from '@ant-design/icons';
 
 const {TextArea} = Input
 interface CourseFormProp{
     updateList:()=>any
+    pathname:String
 }
-const { RangePicker } = DatePicker;
 export default class CourseForm extends Component<CourseFormProp, any> {
     state={
         fileList:[],
         imgList:[],
         previewImage: '',
+        uploading: false,
     }
     formRef = React.createRef<FormInstance>();
 
@@ -32,9 +33,11 @@ export default class CourseForm extends Component<CourseFormProp, any> {
 
     onFinish = (value:any)=>{
         console.log("value",value)
-        const {imgList,fileList} = this.state
+        const {imgList,fileList,uploading} = this.state
         let files:any[] = imgList.concat(fileList,[])
-        this.onUploadfiles(files)
+        console.log('imgList',imgList)
+        this.onUploadfile(imgList[0])
+        this.onUploadfile(fileList[0])
         submitCourse(value).then((result)=>{
             if(result ===1){
                 message.success(`新增${value.title}成功`)
@@ -44,6 +47,7 @@ export default class CourseForm extends Component<CourseFormProp, any> {
                     fileList:[]
                 })
                 this.props.updateList()
+                this.formRef.current!.resetFields();
             }else{
                 message.warn(`新增${value.title}失败`)
             }
@@ -61,7 +65,7 @@ export default class CourseForm extends Component<CourseFormProp, any> {
         })
     }
     uploadImg={
-        name: 'file',
+        // name: 'file',
         // multiple: true,
         // action: upload,
         onChange:(info:any)=>{
@@ -69,12 +73,7 @@ export default class CourseForm extends Component<CourseFormProp, any> {
             let imgList = [...info.fileList]
             imgList = imgList.slice(-1)
             this.setState({ imgList });
-            if (status === 'done') {
               this.formRef.current!.setFieldsValue({ avatar: info.file.name });
-              message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-              message.error(`${info.file.name} file upload failed.`);
-            }
           },
         onRemove:(value:any)=>{
             console.log("remove",value)
@@ -99,23 +98,29 @@ export default class CourseForm extends Component<CourseFormProp, any> {
         }
     }
     uploadFile={
-        name: 'file',
+        // name: 'file',
         // multiple: true,
         // action: upload,
         onChange:(info:any)=>{
-            const { status } = info.file;
             let fileList = [...info.fileList]
             fileList = fileList.slice(-1)
             this.setState({ fileList });
-            if (status === 'done') {
+            console.log('fileList',fileList)
               this.formRef.current!.setFieldsValue({ href: info.file.name });
-              message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-              message.error(`${info.file.name} file upload failed.`);
+        },
+        onRemove:(value:any)=>{
+            console.log("remove",value)
+            if(value.name !== undefined){
+                console.log("removeList",value.name)
+                deleteFile(value.name)
+                this.setState({
+                    fileList:[]
+                })
+            }else{
+                this.setState({
+                    fileList:[]
+                })
             }
-          },
-          onRemove:(value:any)=>{
-            deleteFile(value.name)
             return true;
         },
         beforeUpload:(file:any):boolean=>{
@@ -132,17 +137,38 @@ export default class CourseForm extends Component<CourseFormProp, any> {
             uploadfile(file)
         })
     }
+    onUploadfile=(value:any)=>{
+        let formData = new FormData();
+        console.log('value',value)
+        formData.append('file', value['originFileObj']);
+        console.log('formData',formData)
+        uploadfile(formData).then((result)=>{
+            this.setState({
+                imgList:[],
+                fileList:[],
+                uploading:true
+            })
+        }).catch(()=>{
+            this.setState({
+                uploading:false
+            })
+        })
+    }
     onReset=()=>{
-        const {fileList} = this.state
+        const {fileList,imgList} = this.state
         this.formRef.current!.resetFields();
-        this.uploadImg.onRemove(fileList[0])
+        this.uploadImg.onRemove(imgList)
         this.uploadFile.onRemove(fileList)
         this.setState({fileList:[],imgList:[]});
     }
-
     render() {
         const {fileList,imgList} = this.state
+        const {pathname} = this.props
         return <>
+                <Row gutter={1}>
+                    <Col span={1} ><Button type="primary" onClick={this.props.updateList}><ArrowLeftOutlined twoToneColor="#eb2f96"/></Button></Col>
+                </Row>
+                <Divider plain></Divider>
             <Form name="nest-messages"
                   onFinish={this.onFinish}
                   ref={this.formRef}
@@ -178,7 +204,7 @@ export default class CourseForm extends Component<CourseFormProp, any> {
                         <Col span={4}>
                         <Form.Item>
                             <Upload {...this.uploadFile} fileList={fileList} >
-                            <Button icon={<UploadOutlined />}>上传附件</Button>
+                            <Button icon={<UploadOutlined />}>上传课程附件</Button>
                             </Upload>
                         </Form.Item>
                     </Col>
@@ -194,7 +220,6 @@ export default class CourseForm extends Component<CourseFormProp, any> {
                     </Col>
                 </Row>
             </Form>
-            <RangePicker inputReadOnly></RangePicker>
         </>
     }
 

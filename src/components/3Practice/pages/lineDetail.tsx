@@ -5,7 +5,7 @@ import {ArrowLeftOutlined,DownloadOutlined,HeartOutlined} from '@ant-design/icon
 
 
 
-export default  class LineDetail extends React.Component<any,any> {
+class LineDetail extends React.Component<any,any> {
 
     goBack=()=>{
         this.props.history.go(-1)
@@ -37,3 +37,5 @@ export default  class LineDetail extends React.Component<any,any> {
         )
     }
 }
+
+export default  (props:any)=><LineDetail {...props} key={props.location.pathname} />

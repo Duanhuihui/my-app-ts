@@ -6,8 +6,5 @@ const api={
     getChengpin(){
         return gethtttp(baseUrl.baseUrl +baseUrl.chengpin)
     },
-    getTest(){
-        return gethtttp(baseUrl.test)
-    },
 }
  export default api;

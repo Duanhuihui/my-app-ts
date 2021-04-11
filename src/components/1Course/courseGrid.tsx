@@ -6,9 +6,8 @@ import Information from 'components/1Course/pages/information'
 import Notice from 'components/1Course/pages/notice'
 import Contact from 'components/1Course/pages/contact '
 import Learn from 'components/1Course/pages/learn'
+import Iframe from 'container/iframe'
 import './grid.less'
-import api from 'api';
-import {test} from 'apis'
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -21,18 +20,6 @@ interface courseGridState{
 class courseGrid extends React.Component<courseGridState,any>{
 
   componentDidMount(){
-    api.getTest()
-    .then(resp =>{
-      return  resp.json();
-    })
-    .then((data)=>{
-      this.setState({
-        dd:data
-      })
-    });
-    test().then(result=>{
-      console.log(result)
-    })
   }
     render(){
         return <Layout>
@@ -41,12 +28,12 @@ class courseGrid extends React.Component<courseGridState,any>{
         <Sider className="site-layout-background" width={200}>
           <Menu
             mode="inline"
-            defaultSelectedKeys={['a']}
-            defaultOpenKeys={['a']}
+            defaultSelectedKeys={['/course/info']}
+            defaultOpenKeys={['/course/info']}
             style={{ height: '100%' }}
             
           >
-            <Menu.Item  key="a" icon={<UserOutlined />} title="课程介绍"><Link to='/course/info'>课程介绍</Link></Menu.Item>
+            <Menu.Item  key="/course/info" icon={<UserOutlined />} title="课程介绍"><Link to='/course/info'>课程介绍</Link></Menu.Item>
             <SubMenu key="b1" icon={<LaptopOutlined />} title="课程公告">
               <Menu.Item key="b"><Link to='/course/notice'>课程通知</Link></Menu.Item>
               <Menu.Item key="c"><Link to='/course/notice'>在线交流研讨安排</Link></Menu.Item>
@@ -62,10 +49,11 @@ class courseGrid extends React.Component<courseGridState,any>{
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
         <Switch>
-          <Route path='/course/info' component={Information}></Route>
-          <Route path='/course/notice' component={Notice}></Route>
-          <Route path='/course/contact' component={Contact}></Route>
-          <Route path='/course/learn' component={Learn}></Route>
+          <Route key={'1'}  path='/course/info' component={Information}></Route>
+          <Route key={'2'}  path='/course/notice' component={Notice}></Route>
+          <Route key={'3'}  path='/course/contact' component={Contact}></Route>
+          <Route key={'4'} path='/course/learn' component={Learn}></Route>
+          <Route key={'5'} path='/course/iframe' component={Iframe}></Route>
         </Switch>
         </Content>
       </Layout>

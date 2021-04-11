@@ -1,6 +1,6 @@
 import './App.less';
 import React from 'react'
-import { Layout, Menu,Image,Button} from 'antd';
+import { Layout, Menu,Image} from 'antd';
 import api from 'api/index'
 import {Route,Switch,Redirect,NavLink} from 'react-router-dom'
 import { withRouter} from "react-router-dom"
@@ -25,34 +25,7 @@ class App extends React.Component<any,any>{
       banner:[]
     }
   }
-  componentDidMount(){
-    api.getChengpin()
-    .then(resp =>{
-      return JSON.stringify(resp);
-    })
-    .then(data=>{
-      console.log('-----------------------------------');
-      console.log(data);
-      // console.log(routes);
-      
-      
-    })
-    
-
-  }
-  test(){
-    api.getTest()
-    .then(resp =>{
-      return resp.json();
-    })
-    .then(data=>{
-      console.log('++++++++++++++++++++++++++++++++');
-      console.log(data);
-      // console.log(routes);
-      
-      
-    })
-  }
+  componentDidMount(){}
 
 
     
@@ -81,7 +54,7 @@ class App extends React.Component<any,any>{
                       <Route path="/evalut" component={EvaluationGrid}/>
                       <Redirect from='/' to='/course' />
                     </Switch>
-                <Footer style={{ textAlign: 'center' }}>安徽省 淮南市 泰丰大街168号<Button onClick={()=>this.test()}>按钮测试</Button></Footer>
+                <Footer style={{ textAlign: 'center' }}>安徽省 淮南市 泰丰大街168号</Footer>
               </Layout>
 }
 }

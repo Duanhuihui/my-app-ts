@@ -4,17 +4,10 @@ import qs from 'qs'
 
 // const baseUrl = 'http://localhost:9999'
 const baseUrl =""
-export function test(){
-    return ajax({
-        method:'get',
-        url:baseUrl+'/111',
-
-    })
-}
 export function getAllInfo(){
     return ajax({
         method:'get',
-        url:'/getAllInfo'
+        url:baseUrl+'/getAllInfo'
     })
 }
 export function getInfoById(id,name){
@@ -43,9 +36,10 @@ export function submitCourse(value){
 //上传
 export function uploadfile(file){
     return ajax({
-        headers:{
-            'Content-Type': 'false'
+        headers: {
+            'Content-Type': 'multipart/form-data;charset=utf-8'
         },
+        processData:false,
         method:'post',
         url:'/file/upload',
         data: file
